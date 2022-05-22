@@ -23,11 +23,29 @@ const seedDB = async() => {
         const random1000 = Math.floor(Math.random()*1000);
         const price = Math.floor(Math.random()*20) + 10;
         const camp = new Campground({
+            author: '62682b9e3744c866f3d58dd2',
             location: `${cities[random1000].city}, ${cities[random1000].state}` ,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, distinctio. Excepturi amet quo vitae dolorem ea! Excepturi inventore praesentium aliquid repellat, ad dolor ipsum, deserunt in fuga molestiae vitae aspernatur.',
-            price
+            price,
+            geometry: { 
+                coordinates: [
+                    cities[random1000].longitude,
+                    cities[random1000].latitude
+                ], 
+                type: 'Point' },
+            images: [
+                {
+                //   url: 'https://res.cloudinary.com/dcwkn52qe/image/upload/v1651630218/YelpCamp/atjmprh3iy2wziogpjze.png',
+                    url: 'https://res.cloudinary.com/dcwkn52qe/image/upload/v1652505526/YelpCamp/ecnwkdidamc2fqpnphbe.jpg',
+                  filename: 'YelpCamp/atjmprh3iy2wziogpjze'
+                },
+                {
+                //   url: 'https://res.cloudinary.com/dcwkn52qe/image/upload/v1651630218/YelpCamp/qj13kcq8vvks2ilouqda.png',
+                  url: 'https://res.cloudinary.com/dcwkn52qe/image/upload/v1652505525/YelpCamp/cpre3xz2oe8uw35tfq0q.avif',
+                  filename: 'YelpCamp/qj13kcq8vvks2ilouqda'
+                }
+              ]
         })
         await camp.save();
     }
